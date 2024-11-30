@@ -13,3 +13,5 @@ Sprint boot demo project
 ## Endpoints
 
 ## Error Handling
+
+## ⚖️ Licenses
