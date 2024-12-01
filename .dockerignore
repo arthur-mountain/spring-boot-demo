@@ -1,4 +1,8 @@
+.sqlfluff
+.sqllsrc.json
+
 ### General directories and files ###
+.git
 HELP.md
 .gradle
 build/
@@ -101,7 +105,3 @@ reports/
 test-results/
 coverage/
 junit-report.xml
-
-### Database Migration ###
-!*.sql
-**/init_users.sql

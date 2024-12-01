@@ -1,0 +1,39 @@
+version: "3.9"
+
+# Common configurations for reuse
+x-common: &common-settings
+  tty: true
+  stdin_open: true
+  env_file: .env
+
+services:
+  personal-website-postgres:
+    <<: *common-settings
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+      args:
+        POSTGRES_IMAGE: $POSTGRES_IMAGE
+    container_name: personal-website-pg
+    volumes:
+      - $POSTGRES_VOLUME1
+    ports:
+      - $POSTGRES_CONTAINER_PORT:$POSTGRES_PORT
+    networks:
+      - personal-website-backend
+
+  personal-website-redis:
+    <<: *common-settings
+    image: $REDIS_IMAGE
+    container_name: personal-website-redis
+    volumes:
+      - $REDIS_VOLUME1
+    ports:
+      - $REDIS_CONTAINER_PORT:$REDIS_PORT
+    command: redis-server --requirepass $REDIS_PASSWORD --port ${REDIS_PORT}
+    networks:
+      - personal-website-backend
+
+networks:
+  personal-website-backend:
+    driver: bridge

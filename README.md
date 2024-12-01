@@ -12,15 +12,22 @@ Sprint boot blog system
 
 ## 🌐 Endpoints
 
+
 ## ✅ TODOs
 
 - [x] Initialize spring boot project
+
+- [x] Setup docker compose
+
+  - postgresql
+
+  - redis
 
 - [ ] Initialize project structure
 
 - [ ] Design api endpoints
 
-- [ ] Design database table. (postgresql)
+- [ ] Design database table.
 
 ## ⚖️ Licenses
 
