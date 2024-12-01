@@ -1,16 +1,86 @@
-# Compiled class file
+### General directories and files ###
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### OS ###
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.fuse_hidden*
+.nfs*
+
+### Temporary files ###
+/tmp/
+/*.tmp
+*.swp
+*~
+.*.swp
+*.swo
+.directory
+
+### Authentication files ###
+*.keystore
+*.jks
+
+### File locks ###
+*.lock
+
+### Kotlin specific files ###
+*.kotlin_metadata
+*.kotlin_module
+
+### Secrets ###
+application*.yml
+application*.yaml
+application*.properties
+
+### VS Code ###
+.vscode/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+kls_database.db
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### Compiled class file ###
 *.class
 
-# Log file
+### Log files ###
 *.log
+logs/
 
-# BlueJ files
+#### BlueJ files
 *.ctxt
 
-# Mobile Tools for Java (J2ME)
+### Mobile Tools for Java (J2ME) ###
 .mtj.tmp/
 
-# Package Files #
+### Archive files ###
 *.jar
 *.war
 *.nar
@@ -19,6 +89,13 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+### virtual machine crash logs ###
+# see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+### test results ###
+reports/
+test-results/
+coverage/
+junit-report.xml

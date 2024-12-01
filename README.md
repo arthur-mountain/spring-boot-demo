@@ -14,7 +14,7 @@ Sprint boot blog system
 
 ## ✅ TODOs
 
-- [ ] Initialize spring boot project
+- [x] Initialize spring boot project
 
 - [ ] Initialize project structure
 
