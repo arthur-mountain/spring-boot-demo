@@ -4,11 +4,15 @@ Sprint boot blog system
 
 ## 🔧 Prerequisites
 
+1. [Docker](https://www.docker.com)
+
+2. Java >= 21
+
 ## 🚀 Getting Started
 
 ## 🌐 Endpoints
 
-## 📋 TODOs
+## ✅ TODOs
 
 - [ ] Initialize spring boot project
 
