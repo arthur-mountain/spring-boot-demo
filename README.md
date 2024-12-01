@@ -6,14 +6,20 @@ Sprint boot blog system
 
 ## 🚀 Getting Started
 
-## 📋 TODOs
-
-## ✨ Features
-
 ## 🌐 Endpoints
 
-## ❌ Error Handling
+## 📋 TODOs
+
+- [ ] Initialize spring boot project
+
+- [ ] Initialize project structure
+
+- [ ] Design api endpoints
+
+- [ ] Design database table. (postgresql)
 
 ## ⚖️ Licenses
 
 ## 📚 Refs
+
+[UI](https://www.figma.com/community/file/1235152009438565697)
