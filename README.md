@@ -1,17 +1,19 @@
 # spring-boot-demo
 
-Sprint boot demo project
+Sprint boot blog system
 
-## Prerequisites
+## 🔧 Prerequisites
 
-## Getting Started
+## 🚀 Getting Started
 
-## TODOs
+## 📋 TODOs
 
-## Features
+## ✨ Features
 
-## Endpoints
+## 🌐 Endpoints
 
-## Error Handling
+## ❌ Error Handling
 
 ## ⚖️ Licenses
+
+## 📚 Refs
