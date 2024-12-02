@@ -10,8 +10,17 @@ Sprint boot blog system
 
 ## 🚀 Getting Started
 
-## 🌐 Endpoints
+## 🌐 Endpoints(api/v1)
 
+1. GET: posts
+
+- params:
+  - (optional) page: int
+  - (optional) limit: int
+  - (optional) name: string
+  - (optional) tags: string[]
+
+2. GET: posts/${id}
 
 ## ✅ TODOs
 
