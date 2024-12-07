@@ -38,6 +38,8 @@ Sprint boot blog system
 
 - [ ] Design database table.
 
+- [ ] Create migrations sql for database in docker.
+
 ## ⚖️ Licenses
 
 This project is licensed under the [Apache-License](LICENSE).
