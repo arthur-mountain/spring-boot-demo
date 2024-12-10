@@ -14,13 +14,116 @@ Sprint boot blog system
 
 1. GET: posts
 
-- params:
-  - (optional) page: int
-  - (optional) limit: int
+- parameters:
+
+  - (optional) page: int, default: 1
+  - (optional) limit: int, default: 15
   - (optional) name: string
   - (optional) tags: string[]
 
+- response:
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "title",
+      "description": "description",
+      "tags": ["tag1", "tag2"],
+      "created_at": "2025-01-01T00:00:00Z",
+      "updated_at": "2025-01-01T00:00:00Z"
+    }
+  ]
+}
+```
+
 2. GET: posts/${id}
+
+- response:
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "title",
+      "content": "html content",
+      "created_at": "2025-01-01T00:00:00Z",
+      "updated_at": "2025-01-01T00:00:00Z"
+    }
+  ]
+}
+```
+
+3. GET: projects
+
+- parameters:
+
+  - (optional) page: int, default: 1
+  - (optional) limit: int, default: 15
+  - (optional) name: string
+  - (optional) tags: string[]
+
+- response:
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "title",
+      "description": "description",
+      "tags": ["tag1", "tag2"],
+      "created_at": "2025-01-01T00:00:00Z",
+      "updated_at": "2025-01-01T00:00:00Z"
+    }
+  ]
+}
+```
+
+4. POST: subscribe
+
+- body:
+
+  - email: string
+
+5. GET: me
+
+- response:
+
+```json
+{
+  "data": {
+    "id": 1,
+    "name": "name",
+    avatar: "url",
+    "hero": "url",
+    introduction: "introduction",
+    "skills": ["skill1", "skill2"],
+    "expericences": [
+      {
+        "title": "title",
+        "description": "description"
+        "company": "company",
+        "started_at": "2025-01-01T00:00:00Z",
+        "ended_at": "2025-01-01T00:00:00Z",
+      }
+    ],
+    "Educations": [
+      {
+        "title": "title",
+        "description": "description"
+        "school": "school",
+        "started_at": "2025-01-01T00:00:00Z",
+        "ended_at": "2025-01-01T00:00:00Z",
+      }
+    ],
+    "created_at": "2025-01-01T00:00
+    "updated_at": "2025-01-01T00:00:00Z"
+  }
+}
+```
 
 ## ✅ TODOs
 
