@@ -32,7 +32,7 @@ Sprint boot blog system
 
   - redis
 
-- [ ] Initialize project structure
+- [x] Initialize project structure
 
 - [ ] Design api endpoints
 
