@@ -110,7 +110,7 @@ Sprint boot blog system
         "ended_at": "2025-01-01T00:00:00Z",
       }
     ],
-    "Educations": [
+    "educations": [
       {
         "title": "title",
         "description": "description"
@@ -119,7 +119,7 @@ Sprint boot blog system
         "ended_at": "2025-01-01T00:00:00Z",
       }
     ],
-    "created_at": "2025-01-01T00:00
+    "created_at": "2025-01-01T00:00",
     "updated_at": "2025-01-01T00:00:00Z"
   }
 }
