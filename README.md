@@ -137,7 +137,7 @@ Sprint boot blog system
 
 - [x] Initialize project structure
 
-- [ ] Design api endpoints
+- [x] Design api endpoints
 
 - [ ] Design database table.
 
