@@ -97,9 +97,9 @@ Sprint boot blog system
   "data": {
     "id": 1,
     "name": "name",
-    avatar: "url",
+    "avatar": "url",
     "hero": "url",
-    introduction: "introduction",
+    "introduction": "introduction",
     "skills": ["skill1", "skill2"],
     "expericences": [
       {
