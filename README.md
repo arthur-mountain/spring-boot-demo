@@ -1,129 +1,173 @@
-# spring-boot-demo
+# **Event Tracking System**
 
-Sprint boot blog system
+事件追蹤系統的目標是記錄、存儲、分析和可視化應用程序或用戶行為中的事件數據。
 
-## 🔧 Prerequisites
+## 🔧 **Prerequisites**
 
 1. [Docker](https://www.docker.com)
 
 2. Java >= 21
 
-## 🚀 Getting Started
+## 🚀 **Getting Started**
 
-## 🌐 Endpoints(api/v1)
+### 系統架構
 
-1. GET: posts
-
-- parameters:
-
-  - (optional) page: int, default: 1
-  - (optional) limit: int, default: 15
-  - (optional) name: string
-  - (optional) tags: string[]
-
-- response:
-
-```json
-{
-  "data": [
-    {
-      "id": 1,
-      "title": "title",
-      "description": "description",
-      "tags": ["tag1", "tag2"],
-      "created_at": "2025-01-01T00:00:00Z",
-      "updated_at": "2025-01-01T00:00:00Z"
-    }
-  ]
-}
+```
+用戶事件 > API Gateway ---> Kafka ---> Processing Service ---> PostgreSQL (存儲) ---> Redis (緩存) ---> Grafana (可視化)
 ```
 
-2. GET: posts/${id}
+## 🧩 **核心功能模組**
 
-- response:
+### **1. 事件接收與記錄**
 
-```json
-{
-  "data": [
+- 提供 RESTful API 接收事件，並將其推送至 Kafka。
+
+- 支援多種事件類型（例如用戶行為、系統性能）。
+
+#### API 範例
+
+- **記錄事件**
+
+  - URL: `POST /api/events`
+
+  - Request Body:
+
+    ```json
     {
-      "id": 1,
-      "title": "title",
-      "content": "html content",
-      "created_at": "2025-01-01T00:00:00Z",
-      "updated_at": "2025-01-01T00:00:00Z"
-    }
-  ]
-}
-```
-
-3. GET: projects
-
-- parameters:
-
-  - (optional) page: int, default: 1
-  - (optional) limit: int, default: 15
-  - (optional) name: string
-  - (optional) tags: string[]
-
-- response:
-
-```json
-{
-  "data": [
-    {
-      "id": 1,
-      "title": "title",
-      "description": "description",
-      "tags": ["tag1", "tag2"],
-      "created_at": "2025-01-01T00:00:00Z",
-      "updated_at": "2025-01-01T00:00:00Z"
-    }
-  ]
-}
-```
-
-4. POST: subscribe
-
-- body:
-
-  - email: string
-
-5. GET: me
-
-- response:
-
-```json
-{
-  "data": {
-    "id": 1,
-    "name": "name",
-    "avatar": "url",
-    "hero": "url",
-    "introduction": "introduction",
-    "skills": ["skill1", "skill2"],
-    "expericences": [
-      {
-        "title": "title",
-        "description": "description"
-        "company": "company",
-        "started_at": "2025-01-01T00:00:00Z",
-        "ended_at": "2025-01-01T00:00:00Z",
+      "event_type": "user_click",
+      "user_id": "12345",
+      "timestamp": "2024-01-01T12:00:00Z",
+      "metadata": {
+        "page": "/home",
+        "button": "signup"
       }
-    ],
-    "educations": [
+    }
+    ```
+
+  - Response:
+
+    ```json
+    {
+      "message": "Event received successfully"
+    }
+    ```
+
+### **2. 實時數據處理**
+
+- 使用 Kafka 消費事件數據，執行以下任務：
+
+  - 數據清洗與過濾。
+
+  - 聚合分析（例如統計事件類型的出現頻率）。
+
+  - 異常檢測（例如某個 API 的錯誤率超過 5% 時觸發警報）。
+
+### **3. 數據存儲與查詢**
+
+- PostgreSQL 存儲事件數據，支援高效的數據查詢與分析。
+
+- Redis 提供緩存支持，加速熱點數據查詢。
+
+#### API 範例
+
+- **查詢用戶事件**
+
+  - URL: `GET /api/events/user/{user_id}
+
+    - parameters:
+
+      (optional) started_at: string, default: today
+
+      (optional) ended_at: string, default: 30 days after started_at
+
+  - Response:
+
+    ```json
+    [
       {
-        "title": "title",
-        "description": "description"
-        "school": "school",
-        "started_at": "2025-01-01T00:00:00Z",
-        "ended_at": "2025-01-01T00:00:00Z",
+        "event_type": "user_click",
+        "timestamp": "2024-01-01T12:00:00Z",
+        "metadata": {
+          "page": "/home",
+          "button": "signup"
+        }
+      },
+      {
+        "event_type": "user_login",
+        "timestamp": "2024-01-02T10:00:00Z",
+        "metadata": {}
       }
-    ],
-    "created_at": "2025-01-01T00:00",
-    "updated_at": "2025-01-01T00:00:00Z"
-  }
-}
-```
+    ]
+    ```
+
+### **4. 可視化與報告**
+
+- 整合 Grafana，提供以下指標的圖形化展示：
+
+  - 每小時的事件流量。
+
+  - 熱門事件類型及分佈。
+
+  - 異常事件提醒（如某類事件激增）。
+
+## 🌐 **Endpoints(api/v1)**
+
+### 1. 事件相關
+
+- `POST /api/v1/events`：記錄事件。
+
+- `GET /api/v1/events/user/{user_id}`：查詢用戶的事件數據。
+
+- `GET /api/v1/events/stats`：獲取事件統計數據。
+
+### 2. 系統健康檢查
+
+- `GET /api/v1/health`：檢查系統服務狀態。
+
+## 🗄 **Database Tables**
+
+### **1. events**
+
+存儲事件的基礎表。
+
+| 字段名稱     | 類型   | 描述                        |
+| ------------ | ------ | --------------------------- |
+| `id`         | 主鍵   | 唯一標識符                  |
+| `event_type` | 字符串 | 事件類型（如 `user_click`） |
+| `user_id`    | 字符串 | 觸發事件的用戶 ID           |
+| `timestamp`  | 時間戳 | 事件發生的時間              |
+| `metadata`   | JSONB  | 可變的事件數據              |
+
+### **2. aggregated_events**
+
+存儲聚合後的事件統計數據。
+
+| 字段名稱     | 類型   | 描述               |
+| ------------ | ------ | ------------------ |
+| `id`         | 主鍵   | 唯一標識符         |
+| `event_type` | 字符串 | 事件類型           |
+| `date`       | 日期   | 聚合的日期         |
+| `count`      | 整數   | 該類事件的出現次數 |
+
+## 🔑 **核心技術**
+
+- **Redis**: 用於緩存熱點數據（如最新事件流）並提升查詢性能。
+
+- **Kafka**: 處理事件流，確保高吞吐量與事件的解耦。
+
+- **PostgreSQL**: 存儲結構化事件數據，支援靈活查詢。
+
+- **Grafana**: 提供事件數據的可視化報表。
+
+## 🛠 **擴展功能**
+
+1. **異常檢測與提醒**：當某類事件激增時，通過 Kafka 消息觸發通知。
+
+2. **全文檢索功能**：整合 Elasticsearch，支持基於事件數據的全文檢索。
+
+3. **事件重播**：允許重播歷史事件流，用於數據恢復或錯誤調試。
+
+4. **多租戶支持**：設計隔離的事件數據存儲與查詢，支援多應用場景。
 
 ## ✅ TODOs
 
@@ -139,7 +183,7 @@ Sprint boot blog system
 
 - [x] Design api endpoints
 
-- [ ] Design database table.
+- [x] Design database table.
 
 - [ ] Create migrations sql for database in docker.
 
@@ -164,7 +208,3 @@ limitations under the License.
 ```
 
 The third-party licenses used in this project are listed in [THIRD-PARTY-LICENSE](THIRD-PARTY-LICENSE).
-
-## 📚 Refs
-
-[UI](https://www.figma.com/community/file/1235152009438565697)
