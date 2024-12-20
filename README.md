@@ -168,5 +168,3 @@ limitations under the License.
 The third-party licenses used in this project are listed in [THIRD-PARTY-LICENSE](THIRD-PARTY-LICENSE).
 
 ## 📚 Refs
-
-[UI](https://www.figma.com/community/file/1235152009438565697)
