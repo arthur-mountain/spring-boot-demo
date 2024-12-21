@@ -168,3 +168,7 @@ limitations under the License.
 The third-party licenses used in this project are listed in [THIRD-PARTY-LICENSE](THIRD-PARTY-LICENSE).
 
 ## 📚 Refs
+
+也許不用執著於先找到合適的 UI，才有辦法實作，
+而是先把要做的想法找出來後直接來實作，可以參考一些常見的 backend side project,
+e.g. short url, etc.
