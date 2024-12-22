@@ -172,3 +172,9 @@ The third-party licenses used in this project are listed in [THIRD-PARTY-LICENSE
 也許不用執著於先找到合適的 UI，才有辦法實作，
 而是先把要做的想法找出來後直接來實作，可以參考一些常見的 backend side project,
 e.g. short url, etc.
+
+## Ideas
+
+1. url shortener
+2. event tracking, self hosted or integrate with third party such as google analytics
+3.
