@@ -18,7 +18,7 @@ public class RedisConfig {
   @Bean
   public StringRedisTemplate stringRedisTemplate() {
     return new StringRedisTemplate(
-        new LettuceConnectionFactory(new RedisStandaloneConfiguration(redisHost, redisPort)));
+        new LettuceConnectionFactory(new RedisStandaloneConfiguration(redisHost,
+            redisPort)));
   }
-
 }

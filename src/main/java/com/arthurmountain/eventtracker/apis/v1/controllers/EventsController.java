@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.arthurmountain.eventtracker.apis.v1.dtos.EventDto;
@@ -37,9 +36,8 @@ public class EventsController {
   // 查詢特定用戶
   @GetMapping("/users/{userId}")
   public ResponseEntity<List<Event>> getUserEvents(
-    @PathVariable String userId
-  ) {
+      @PathVariable String userId) {
     List<Event> events = eventsService.getEventsByUserId(userId);
-    return ResponseEntity.ok(events)
+    return ResponseEntity.ok(events);
   }
 }
