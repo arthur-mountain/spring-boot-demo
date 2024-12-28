@@ -54,6 +54,14 @@ public class EventsServiceImpl implements EventsService {
     return dbEvents;
   }
 
+  private List<RedisEvent> convertToRedisEvents(List<Event> dbEvents) {
+    return dbEvents.stream().map(this::convertToRedisEvent).toList();
+  }
+
+  private List<Event> convertToEvents(List<RedisEvent> redisEvents) {
+    return redisEvents.stream().map(this::convertToEvent).toList();
+  }
+
   private RedisEvent convertToRedisEvent(Event dbEvent) {
     RedisEvent redisEvent = new RedisEvent();
     redisEvent.setEventType(dbEvent.getEventType());
@@ -70,15 +78,4 @@ public class EventsServiceImpl implements EventsService {
     return dbEvent;
   }
 
-  private List<RedisEvent> convertToRedisEvents(List<Event> dbEvents) {
-    return dbEvents.stream()
-        .map(this::convertToRedisEvent)
-        .toList();
-  }
-
-  private List<Event> convertToEvents(List<RedisEvent> redisEvents) {
-    return redisEvents.stream()
-        .map(this::convertToEvent)
-        .toList();
-  }
 }
