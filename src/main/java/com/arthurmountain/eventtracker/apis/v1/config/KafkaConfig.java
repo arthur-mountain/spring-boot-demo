@@ -13,7 +13,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 
 @Configuration
 public class KafkaConfig {
-  @Value("${kafka.bootstrap-servers}")
+  @Value("${spring.kafka.bootstrap-servers}")
   private String bootstrapServers;
 
   public Map<String, Object> producerConfigs() {
