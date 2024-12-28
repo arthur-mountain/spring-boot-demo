@@ -1,6 +1,6 @@
 package com.arthurmountain.eventtracker.apis.v1.repositories.events.cache;
 
-import com.arthurmountain.eventtracker.apis.v1.entities.Event;
+import com.arthurmountain.eventtracker.apis.v1.entities.RedisEvent;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,32 +18,33 @@ public class RedisEventsCacheImpl implements RedisEventsCache {
   }
 
   @Override
-  public void cacheUserEvents(String userId, List<Event> eventList) {
+  public void cacheUserRedisEvents(String userId, List<RedisEvent> eventList) {
     String key = buildKey(userId);
 
     // 先移除舊的 list
     redisTemplate.delete(key);
 
-    // 將每個 Event 轉成一行字串，使用 | 作為分隔符
-    for (Event event : eventList) {
-      redisTemplate.opsForList().rightPush(key, convertEventToLine(event));
+    // 將每個 RedisEvent 轉成一行字串，使用 | 作為分隔符
+    for (RedisEvent event : eventList) {
+      redisTemplate.opsForList().rightPush(key, convertRedisEventToLine(event));
     }
   }
 
   @Override
-  public List<Event> getUserEvents(String userId) {
+  public List<RedisEvent> getUserRedisEvents(String userId) {
     String key = buildKey(userId);
 
     // 取得整個 list
     List<String> lines = redisTemplate.opsForList().range(key, 0, -1);
+
     if (lines == null || lines.isEmpty()) {
       return new ArrayList<>();
     }
 
-    // 轉回 Event
-    List<Event> result = new ArrayList<>();
+    // 轉回 RedisEvent
+    List<RedisEvent> result = new ArrayList<>();
     for (String line : lines) {
-      Event e = convertLineToEvent(line);
+      RedisEvent e = convertLineToRedisEvent(line);
       if (e != null) {
         result.add(e);
       }
@@ -52,7 +53,7 @@ public class RedisEventsCacheImpl implements RedisEventsCache {
   }
 
   @Override
-  public void evictUserEvents(String userId) {
+  public void evictUserRedisEvents(String userId) {
     redisTemplate.delete(buildKey(userId));
   }
 
@@ -61,8 +62,8 @@ public class RedisEventsCacheImpl implements RedisEventsCache {
     return "events:" + userId;
   }
 
-  // 將 Event -> "eventType|timestamp|metadata"
-  private String convertEventToLine(Event event) {
+  // 將 RedisEvent -> "eventType|timestamp|metadata"
+  private String convertRedisEventToLine(RedisEvent event) {
     StringBuilder sb = new StringBuilder();
     sb.append(event.getEventType() == null ? "" : event.getEventType()).append("|");
     sb.append(event.getTimestamp() == null ? "" : event.getTimestamp().toString()).append("|");
@@ -70,8 +71,8 @@ public class RedisEventsCacheImpl implements RedisEventsCache {
     return sb.toString();
   }
 
-  // 將字串反解析成 Event (若有更多欄位, 額外處理)
-  private Event convertLineToEvent(String line) {
+  // 將字串反解析成 RedisEvent (若有更多欄位, 額外處理)
+  private RedisEvent convertLineToRedisEvent(String line) {
     String[] parts = line.split("\\|", 3); // 最多切3個區塊
     if (parts.length < 3) {
       return null;
@@ -86,7 +87,7 @@ public class RedisEventsCacheImpl implements RedisEventsCache {
       dt = LocalDateTime.parse(timestampStr);
     }
 
-    Event e = new Event();
+    RedisEvent e = new RedisEvent();
     e.setEventType(eventType);
     e.setTimestamp(dt);
     e.setMetadata(metadata);
