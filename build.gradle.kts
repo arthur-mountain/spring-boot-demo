@@ -18,19 +18,30 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
-    // WIP: connect with actuator, and needs to start prometheus server in docker
-    // implementation("io.micrometer:micrometer-registry-prometheus")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
-    implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
-    implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")
+    // Spring boot web starter
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.kafka:spring-kafka")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
+
+    // Spring Doc (OpenAPI/Swagger)
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
+
+    // DB：Spring Data JDBC + PostgreSQL 驅動
+    implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
     runtimeOnly("org.postgresql:postgresql")
+
+    // Redis
+    // implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
+
+    // Kafka
     implementation("org.springframework.kafka:spring-kafka")
+
+    // implementation("io.micrometer:micrometer-registry-prometheus") // 需要時再開
+    // Spring Boot Actuator (健康檢查、指標)
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+
+    // 開發/測試
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("io.projectreactor:reactor-test")
     testImplementation("org.springframework.kafka:spring-kafka-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
