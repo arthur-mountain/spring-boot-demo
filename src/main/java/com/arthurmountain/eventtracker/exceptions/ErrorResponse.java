@@ -1,4 +1,4 @@
-package com.arthurmountain.personalwebsite.exceptions;
+package com.arthurmountain.eventtracker.exceptions;
 
 public class ErrorResponse {
 

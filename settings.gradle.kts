@@ -1,1 +1,1 @@
-rootProject.name = "personal-website-platform"
+rootProject.name = "eventtracker"

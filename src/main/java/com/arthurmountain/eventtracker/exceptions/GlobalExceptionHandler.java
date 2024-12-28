@@ -1,4 +1,4 @@
-package com.arthurmountain.personalwebsite.exceptions;
+package com.arthurmountain.eventtracker.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
