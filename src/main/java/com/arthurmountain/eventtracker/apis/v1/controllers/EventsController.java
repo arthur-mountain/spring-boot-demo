@@ -1,17 +1,15 @@
 package com.arthurmountain.eventtracker.apis.v1.controllers;
 
 import java.util.List;
-
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.arthurmountain.eventtracker.apis.v1.dtos.EventDto;
 import com.arthurmountain.eventtracker.apis.v1.entities.Event;
 import com.arthurmountain.eventtracker.apis.v1.services.events.EventsService;
@@ -25,7 +23,7 @@ public class EventsController {
   // 建立事件
   @PostMapping
   public ResponseEntity<Event> createEvent(
-      @RequestBody @Validated EventDto event) {
+      @RequestBody @Valid EventDto event) {
     Event saved = eventsService.createEvent(
         event.getEventType(),
         event.getUserId(),
