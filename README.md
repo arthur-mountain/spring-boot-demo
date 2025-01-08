@@ -192,7 +192,7 @@
 This project is licensed under the [Apache-License](LICENSE).
 
 ```plaintext
-Copyright 2024 arthur-mountain
+Copyright 2025 arthur-mountain
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
