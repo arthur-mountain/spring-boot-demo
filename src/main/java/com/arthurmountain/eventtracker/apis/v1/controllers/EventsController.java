@@ -33,8 +33,7 @@ public class EventsController {
 
   // 查詢特定用戶
   @GetMapping("/users/{userId}")
-  public ResponseEntity<List<Event>> getUserEvents(
-      @PathVariable String userId) {
+  public ResponseEntity<List<Event>> getUserEvents(@PathVariable String userId) {
     List<Event> events = eventsService.getEventsByUserId(userId);
     return ResponseEntity.ok(events);
   }
